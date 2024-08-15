@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="keys">
+            <div data-key="65" class="key">
+                <kbd>A</kbd>
+            </div>
+            <div data-key="83" class="key">
+                <kbd>S</kbd>
+            </div>
+            <div data-key="68" class="key">
+                <kbd>D</kbd>
+            </div>
+            <div data-key="70" class="key">
+                <kbd>F</kbd>
+            </div>
+            <div data-key="71" class="key">
+                <kbd>G</kbd>
+            </div>
+            <div data-key="72" class="key">
+                <kbd>H</kbd>
+            </div>
+            <div data-key="74" class="key">
+                <kbd>J</kbd>
+            </div>
+            <div data-key="75" class="key">
+                <kbd>K</kbd>
+            </div>
+            <div data-key="76" class="key">
+                <kbd>L</kbd>
+            </div>
+           
+        </div>
+    </div>
+
+    <audio data-key="65" src="./sounds/drums-1-108377.mp3"></audio>
+    <audio data-key="83" src="./sounds/drum-beat-02-36276.mp3"></audio>
+    <audio data-key="68" src="./sounds/drum-kit-100612.mp3"></audio>
+    <audio data-key="70" src="./sounds/left-crashwav-14567.mp3"></audio>
+    <audio data-key="71" src="./sounds/mixkit-drum-joke-accent-579.wav"></audio>
+    <audio data-key="72" src="./sounds/slow-drum-loop-86697.mp3"></audio>
+    <audio data-key="74" src="./sounds/soda-bottle-base-drum-46019.mp3"></audio>
+    <audio data-key="75" src="./sounds/synth-cowbell-high-169970.mp3"></audio>
+    <audio data-key="76" src="./sounds/synth-cowbell-low-169971.mp3"></audio>
+   
+    <script>
+    window.addEventListener('keydown',function(e){
+        const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+    const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+        if(!audio)
+        {
+            return;
+        }
+        console.log(audio);
+        console.log('this is key value',key);
+        
+        audio.currentTime = 0;
+        audio.play();   
+        key.classList.add('playing');
+
+        function endTransition(e){
+            console.log(e);
+            if(e.propertyName !== 'transform')
+            {
+                return;
+            }
+            key.classList.remove('playing');
+        }
+        const keys = document.querySelectorAll('.key');
+        keys.forEach(key => addEventListener('transitionend',endTransition));
+
+    });
+</script>
+</body>
+</html>
