@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+       <div class="square">
+        <h1>
+            <span class="hour" id="hour"></span>
+            <span class="minute" id="minute"></span>
+            <span class="second" id="second"></span>
+            <span class="ampm" id="ampm"></span>
+       </h1>
+       
+       </div>
+
+    </div>
+    <script>
+        //get DateTime
+        const time = new Date();
+        //get only Minute
+        const minutes = time.getMinutes();
+        //get only hour
+        var hour = time.getHours();
+        var hour = hour % 12;
+        console.log('hour:',hour);
+        //passing value of minutes to the minute
+        document.getElementById('minute').innerHTML = minutes;
+        document.getElementById('hour').innerHTML = hour;
+        function updateSecond() {
+            const time = new Date();
+    
+            const second = time.getSeconds();
+            document.getElementById('second').innerHTML = second;
+            console.log(second);
+            
+        }
+        
+        setInterval(updateSecond,1000);
+        updateSecond();
+
+        function updatingMinute()
+        {
+            const time = new Date();
+            const checkSecond = time.getSeconds();
+            const minute = time.getMinutes();
+            const checkMinute = time.getMinutes();
+            let hours = time.getHours();
+            //check if am or pm
+            var ampm = hours >= 12 ? 'PM' : 'AM';
+            //to be 12 hours only
+            document.getElementById('ampm').innerHTML = ampm;
+            hours = hours % 12;
+             
+            if(checkSecond === 0)
+            {
+                console.log('inside updatingminute',checkSecond);
+                document.getElementById('minute').innerHTML = minute;
+            }
+            if(checkMinute === 1)
+            {
+                console.log('this is inside updatinghour',checkMinute);
+                document.getElementById('hour').innerHTML = hours;
+                if(hours === 0)
+                {
+                    hours = 12;
+                    document.getElementById('hour').innerHTML = hours;
+                    console.log('0');
+                }
+            }
+            else
+            {
+                console.log('this is inside updatinghour',checkMinute);
+            }
+        }
+
+        setInterval(updatingMinute,1000);
+        updatingMinute();
+
+     
+      </script>
+</body>
+</html>
