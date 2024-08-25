@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="../css/tab.css">
+	<script src="../javascript/tab.js"></script>
+	<style type="text/css">
+		*
+		{
+			padding: 0px;
+			margin:0px;
+		}
+		header
+		{
+			height: 50px;
+			width: 100%;
+			margin-bottom:10px;
+		}
+		header input
+		{
+			position: absolute;
+			top: 5px;
+			left: 200px;
+			height: 30px;
+			width: 300px;
+		}
+		.form1
+		{
+			margin-left: 2px;
+			padding-left: 10px;
+			padding-top: 10px;
+			height: 500px;
+			width: 300px;
+			border-style: solid;
+		}
+		.picture
+		{
+			border-style: solid;
+			height: 200px;
+			width: 250px;
+			margin-top: 10px;
+		}
+		.info
+		{
+
+		}
+		label
+		{
+
+		}
+		.transaction
+		{
+			dis
+		}
+	</style>
+	<title></title>
+</head>
+<body>
+	<header>
+		<button class="tablink" onclick="transactions('transaction',this,'red')">Transaction</button>
+		<button class="tablink" onclick="expensess()">Store Expenses</button>
+		<button class="tablink" onclick="returns()">Return Item</button>
+		<button class="tablink" onclick="requests()">Request Item</button>
+	</header>
+<div id="transaction" class="tabcontent">
+  <h3>Home</h3>
+  <p>Home is where the heart is..</p>
+
+	<input type="tex" name="" class="input">
+	<form class="form1">
+		<label>code</label>
+		<input type="" name="" placeholder="Search">
+		<div class="picture">
+			picture
+		</div>
+		<div class="info">
+		<label>name</label>
+		<label>color</label>
+		<label>size</label>
+		<label>class</label>
+		<label>category</label>
+		</div>
+	</form>
+</div>
+<div id="expenses" class="tabcontent">
+  <h3>News</h3>
+  <p>Some news this fine day!</p> 
+</div>
+
+<div id="return" class="tabcontent">
+  <h3>Contact</h3>
+  <p>Get in touch, or swing by for a cup of coffee.</p>
+</div>
+
+<div id="request" class="tabcontent">
+  <h3>About</h3>
+  <p>Who we are and what we do.</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+*
+{
+  margin: 0px;
+  padding: 0px;
+}
+body
+{
+      
+}
+header
+{
+  display: flex;
+  align-content: center;
+  background-color: #034f84;
+  height: 50px;
+  width: 100%;
+}
+
+/*start of transaction graph*/
+.card
+{
+  height: 200px;
+  width: 1265px;
+  margin-top: 5px;
+  margin-left: 5px;
+  background-color: white;
+}
+.graph
+{
+  margin-top: 5px;
+  margin-left: 3px;
+  background-color: red;
+  height: 160px;
+  width: 1255px;
+}
+/*end transaction css graph*/
+/*start css table*/
+.table
+{
+  margin-top: 5px;
+  margin-left: 5px;
+  background-color: white;
+  height: 370px;
+  width: 1265px;
+}
+table
+{
+  margin-left: 5px;
+  background-color: ;
+  width: 1255px;
+  height: 340px;
+}
+/*end of transaction graph*/
+/*start of responsive*/
+@media screen and (max-width: 800px) {
+ .card, .table {
+    width: 370px;
+  }
+  .graph
+  {
+    width: 360px;
+  }
+  table
+  {
+    width: 360px;
+  }
+}

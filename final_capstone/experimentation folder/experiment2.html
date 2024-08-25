@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {box-sizing: border-box}
+
+/* Set height of body and the document to 100% */
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial;
+  background-color: gray;
+}
+
+/* Style tab links */
+.tablink {
+  background-color: #555;
+  color: black;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+  width: 25%;
+}
+
+.tablink:hover {
+  background-color: #777;
+}
+
+/* Style the tab content (and add height:100% for full page content) */
+.tabcontent {
+  color: black;
+  display: none;
+  padding: 100px 20px;
+  height: 100%;
+}
+header
+{
+  background-color: blue;
+  height: 50px;
+}
+.tabcontent form
+{
+  margin-top: -45px;
+  margin-left: -15px; 
+  border-style: solid;
+  height: 200px;
+  width: 800px;
+}
+.tabcontent form fieldset
+{
+  height: 190px;  
+}
+.tabcontent .list_item
+{
+  margin-top: 10px;
+  height: 320px;
+}
+.tabcontent .list_item fieldset
+{
+  height: 315px;
+}
+.tabcontent .tottal
+{
+  margin-left: 790px;
+  margin-top: -530px;
+  width:460px;
+  height: 530px;
+}.tabcontent .tottal fieldset
+{
+  height: 525px;
+}
+.tabcontent form input
+{
+  height: 30px;
+  width: 200px;
+}
+.tabcontent form button
+{
+  height: 30px;
+}
+.tabcontent form button:active
+{
+  background-color: green;
+}
+.tabcontent form table
+{
+  width: 550px;
+text-align: center;}
+.tabcontent form table td
+{
+  height: auto;
+}
+</style>
+</head>
+<body>
+<header>asd</header>
+
+<button class="tablink" onclick="openPage('Home', this, 'white')" id="defaultOpen">Transaction</button>
+<button class="tablink" onclick="openPage('News', this, 'white')">Store Expense</button>
+<button class="tablink" onclick="openPage('Contact', this, 'white')">Return Item</button>
+<button class="tablink" onclick="openPage('About', this, 'white')">Return Product</button>
+
+<div id="Home" class="tabcontent">
+  <form>
+    <fieldset>
+      <legend>Product Information</legend>
+      <input type="" name="" placeholder="Search Product Code or Name">
+      <button>Search</button>
+      <br>
+      <label>Quantity</label>
+      <br>
+      <table>
+        <tr>
+        <th >Code</th>
+        <th >Name</th>
+        <th >Price</th>
+        <th >Color</th>
+        <th >Size</th>
+        <th >Class</th>
+        <th >Category</th>
+        <th>Total</th>
+        </tr>
+        <tr>
+          <td>01</td>
+          <td >headphone</td>
+          <td >150</td>
+          <td >black/blue/red/yellow/violet/orange/violet/orange/violet/orange/violet/orange/violet/orange</td>
+          <td >none</td>
+          <td >none</td>
+          <td >gadget accesories</td>
+          <td>180</td>
+        </tr>
+      </table>
+    </fieldset>
+  </form>
+
+  <form class="list_item">
+    <fieldset>
+      <legend>To Pay Product</legend>
+    </fieldset>
+  </form>
+  <form class="tottal">
+    <fieldset>
+      <legend>total to Pay</legend>
+    </fieldset>
+  </form>
+</div>
+
+<div id="News" class="tabcontent">
+  <h3>News</h3>
+  <p>Some news this fine day!</p> 
+</div>
+
+<div id="Contact" class="tabcontent">
+  <h3>Contact</h3>
+  <p>Get in touch, or swing by for a cup of coffee.</p>
+</div>
+
+<div id="About" class="tabcontent">
+  <h3>About</h3>
+  <p>Who we are and what we do.</p>
+</div>
+
+<script>
+function openPage(pageName,elmnt,color) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].style.backgroundColor = "";
+  }
+  document.getElementById(pageName).style.display = "block";
+  elmnt.style.backgroundColor = color;
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
+   
+</body>
+</html> 

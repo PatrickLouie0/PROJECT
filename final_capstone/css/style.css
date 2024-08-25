@@ -1,0 +1,28 @@
+*
+{
+	margin: 0px;
+	padding: 0px;
+	text-decoration: none;
+
+}
+body
+{
+	background-color: black;
+}
+nav
+{
+	font-size: 20px;
+	position: absolute;
+	color: white;
+	background-color: red;
+	display: inline;
+}
+ul
+{
+	list-style-type: none;
+	text-align: center;
+}
+li
+{
+	float: left;
+}
