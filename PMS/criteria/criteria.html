@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>criteria</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>\
+
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body 
+style="box-shadow: 1px 1px 8px 2px;background: url(&quot;assets/img/w9.jpg&quot;) center / cover no-repeat;"
+>
+    <div class="container py-2 px-1 my-2" style="height: 550px;background: rgb(0,0,0); overflow-y: scroll;">
+        <h2 class="text-center text-light"><strong>Criteria</strong></h2>
+        <form id="form" method="POST">
+            <div class="mb-2" id="">
+                <h4 class="text-center text-light"><strong>Criteria-1</strong></h4>
+        
+                <div class="mb-3"><label class="form-label text-light">Criteria Name</label><input class="form-control" type="text" name="criteria_name[]" placeholder="Criteria Name" autofocus="" required=""></div>
+                <div class="mb-3"><label class="form-label text-light" id="percent">Criteria %</label><input class="form-control" type="text" placeholder="Criteria %" name="criteria_percent[]" autofocus="" required=""></div>
+                <div class="mb-3"><label class="form-label text-light">Criteria Description</label><input class="form-control" type="text" placeholder="Criteria Description" name="criteria_description[]" autofocus="" required=""></div>
+            </div>
+
+            <div class="mb-2" id="newrow">
+            </div>
+            <div><button class="btn btn-primary" id="new-input" type="button"><strong>Add Criteria</strong></button>
+
+            <button class="btn btn-primary" id="delete-input" type="button"><strong>Delete Criteria</strong></button>
+            </div>
+            <div class="text-end"><button class="btn btn-primary me-5" type="submit" name="submit"><strong>Submit</strong></button></div>
+        </form>
+    </div>
+
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+  
+</body>
+
+<script type="text/javascript">
+     let a = 2;
+       
+    $("#new-input").click(function (){
+        
+        newrowadd = 
+        '<div class="mb-2 row">'+
+        '<h4 class="text-center text-light"><strong>Criteria-'+ a++ +'</strong></h4>'+
+                '<div class="mb-3"><label class="form-label text-light">Criteria Name</label><input class="form-control" type="text" name="criteria_name" placeholder="Criteria Name" autofocus="" required=""></div>'+
+                '<div class="mb-3"><label class="form-label text-light">Criteria %</label><input class="form-control" type="text" name="criteria_percent" placeholder="Criteria %" name="percent" id="percent" autofocus="" required=""></div>'+
+                '<div class="mb-3"><label class="form-label text-light">Criteria Description</label><input class="form-control" type="text" name="criteria_description" placeholder="Criteria Description" name="name" autofocus="" required=""></div>'+
+            '</div>'
+            
+            $('#newrow').append(newrowadd);
+    });
+   $("body").on("click", "#delete-input", function() {
+        $(".row").last().remove();
+        a--;
+  
+});
+</script>
+</html>

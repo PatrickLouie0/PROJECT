@@ -1,0 +1,67 @@
+<?php
+    require_once(../folder/pms.php);
+    $con->contestant();
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>contestant</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body 
+style="background: url(&quot;assets/img/w9.jpg&quot;) center / cover no-repeat;border-color: rgb(255,255,255);">
+    <div class="container py-2 px-1 my-2" style="background: #000000;height: 550px;overflow-y: scroll;overflow-x: hidden;">
+        <form method="POST">
+            <div>
+                <div class="mb-2">
+                    <h2 class="text-center" style="color: rgb(255,138,0);"><strong>Contestant 1</strong></h2>
+                    <input type="text" name="event_id[]" value="<?=$_SESSION['event_id'] ?>">
+                    <div class="mb-3"><label class="form-label" style="color: rgb(255,255,255);">Contestant Name</label>
+                        <input class="form-control" type="text" placeholder="Criteria Name" name="contestant_name[]" autofocus="" required="">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" style="color: rgb(255,255,255);">Contestant No&nbsp;</label><input class="form-control" type="text" placeholder="Contestant no" name="contestant_no[]" autofocus="" value="1" required="">
+                    </div>
+                    <div class="mb-3"><label class="form-label" style="color: rgb(255,255,255);">Contestant Description</label><input class="form-control" type="text" placeholder="Contestant Description" name="Contestant_description[]" autofocus="" required=""></div>
+                </div>
+                <div id="newrow"></div>
+                <div><button class="btn btn-primary" id="new-input" type="button"><strong>Add Contestant</strong></button>
+                <button class="btn btn-primary" id="delete-input" type="button"><strong>Delete Contestant</strong></button></div>
+                <div class="text-end"><button class="btn btn-primary me-5" type="button"><strong>Submit</strong></button></div>
+            </div>
+        </form>
+    </div>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    let contestant_no = 2;
+     let a = 2;
+       
+    $("#new-input").click(function (){
+        
+        newrowadd = 
+        '<div class="mb-2 row">'+
+        '<h4 class="text-center text-light"><strong>contestant-'+ a++ +'</strong></h4>'+
+        '<input type="text" name="event_id[]" value="<?= $_SESSION['event_id'] ?>">'+
+                '<div class="mb-3"><label class="form-label text-light">Contestant Name</label><input class="form-control" type="text" placeholder="Contestant Name" name="contestant_name[]" autofocus="" required=""></div>'+
+                '<div class="mb-3"><label class="form-label text-light">Contestant No</label><input class="form-control" type="text" placeholder="Contestant no" name="contestant_no[]" id="percent" value="'+ contestant_no++ +'" autofocus="" required=""></div>'+
+                '<div class="mb-3"><label class="form-label text-light">Contestant Description</label><input class="form-control" type="text" placeholder="Contestant Description" name="Contestant_description[]" autofocus="" required=""></div>'+
+            '</div>'
+            
+            $('#newrow').append(newrowadd);
+    });
+   $("body").on("click", "#delete-input", function() {
+        $(".row").last().remove();
+        a--;
+        contestant_no--;
+  
+});
+</script>
+</body>
+
+</html>

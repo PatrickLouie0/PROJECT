@@ -1,0 +1,243 @@
+backup data
+
+<?php
+
+$id = filter_var($_GET['id'],FILTER_SANITIZE_NUMBER_INT);
+// Database credentials
+$host = 'localhost';
+$dbname = 'pms';
+$username = 'root';
+$password = '';
+
+// Establish a connection to the database using PDO
+try {
+  $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+  
+  // Set the PDO error mode to exception
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  
+} catch(PDOException $e) {
+  echo "Connection failed: " . $e->getMessage();
+}
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Winner</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"/>
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-light navbar-expand-md text-center" style="color: rgb(248,248,248);background: #000000;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#" style="color: rgba(255,255,255,0.9);background: url('../../background/logo.png') center / cover no-repeat;width: 88px;height: 50px;"></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span>   <i class="fa-solid fa-bars" style="color: white"></i>
+ </button>
+            <div class="collapse navbar-collapse ml-auto " id="navcol-1">
+                <ul class="navbar-nav " >
+                    <li class="nav-item"><a class="nav-link active" href="../home.php?id=<?=$id?>" style="color: white;font-size: 15px;">Home </a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../gallery/gallery.php?id=<?=$id?>" style="color: white;font-size: 15px;"> Gallery</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="result/result.php" style="color: white;font-size: 15px;"> Result</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+  <?php
+
+$id = $_GET['id'];
+$getallscore = array();
+  $stmt = $conn->prepare('SELECT e.event_id,c.contestant_name,c.contestant_picture,SUM(s.score) AS score FROM event e 
+  INNER JOIN contestant c ON e.event_id = c.event_id
+  INNER JOIN score s ON c.id = s.contestant_id
+  WHERE e.main_event_id = :id
+  GROUP BY c.id,e.main_event_id ORDER BY score DESC LIMIT 4;');
+  $stmt->bindParam(':id',$id);
+  $stmt->execute();
+  $count = $stmt->rowCount();
+  if ($count>0) {
+    # code...
+  $get =  $stmt->fetchAll(PDO::FETCH_ASSOC);
+  $getallscore = $get;
+  }
+  else
+  {
+    echo "no data";
+  }
+
+
+?>
+
+  <h1 class="text-center" style=""> GRAND WINNER</h1>
+<div class="mx-5">
+<div class="container">
+  <div class="row align-items-start">
+    <?php
+    $rank = 1;
+    foreach($getallscore as $get):
+      $rank_text = '';
+      $rank_icon = '';
+
+      if ($rank == 1) {
+        $rank_text = 'WINNER';
+        $rank_icon = '<i class="fa-solid fa-crown" style="font-size:50px; color:gold;"></i>';
+      } elseif ($rank == 2) {
+        $rank_icon = '<i class="fa-solid fa-crown" style="font-size:35px; color:gold;"></i>';
+        $rank_text = '1st Place';
+      } elseif ($rank == 3) {
+        $rank_icon = '<i class="fa-solid fa-crown" style="font-size:30px; color:gold;"></i>';
+        $rank_text = '2nd Place';
+      } elseif ($rank == 4) {
+        $rank_icon = '<i class="fa-solid fa-crown" style="font-size:25px; color:gold;"></i>';
+        $rank_text = '3rd Place';
+      }
+      ?>
+      <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+        <div class="text-center">
+          <h6><?=$rank_icon?></h6>
+          <img src="../../contestant/assets/picture/<?=$get['contestant_picture']?>" class="img-fluid rounded-circle">
+        </div>
+        <div class="text-center mt-3">
+          <h5><?=$rank_text?></h5>
+          <p><?=$get['contestant_name']?></p>
+        </div>
+      </div>
+      <?php $rank++; endforeach ?>
+  </div>
+</div>
+
+
+
+
+  <h1 class="text-center"> TOP 10 Candidates FOR EVERY EVENT</h1>
+<div class="mx-5">
+
+  <?php
+
+$getevent = array();
+$id = $_GET['id'];
+$event_score_id = '';
+$stmt = $conn->prepare('SELECT event_name,event_id FROM event  WHERE main_event_id = :id');
+$stmt->bindParam(':id',$id);
+$stmt->execute();
+$count = $stmt->rowCount();
+if ($count>0) {
+  # code...
+$get =  $stmt->fetchAll(PDO::FETCH_ASSOC);
+$getevent = $get;
+$event_score_id = $get['0']['event_name'];
+}
+else
+{
+  echo "no data";
+}
+
+
+$getevent = array();
+$id = $_GET['id'];
+$stmt = $conn->prepare('SELECT event_name, event_id FROM event WHERE main_event_id = :id');
+$stmt->bindParam(':id', $id);
+$stmt->execute();
+$count = $stmt->rowCount();
+if ($count > 0) {
+    $getevent = $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+$getscore = array();
+
+
+
+$getscore = array();
+
+foreach ($getevent as $event) {
+    $event_id = $event['event_id'];
+
+  $judges = array();
+$stmt = $conn->prepare('SELECT COUNT(t1.judge_name) as count,t1.event_id as event_id,t1.id as id FROM judge t1
+INNER JOIN event t2 ON t1.event_id = t2.event_id
+WHERE t2.main_event_id = :id GROUP BY t1.event_id;');
+$stmt->bindParam(':id', $id);
+$stmt->execute();
+$count = $stmt->rowCount();
+if ($count > 0) {
+    $judges = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach($getscore as $scoreget)
+    {
+      echo $judges['event_id'].'<br>';
+      echo $judges['judge_id'].'<br>';
+    }
+
+    $stmt = $conn->prepare('SELECT contestant.contestant_name, contestant.event_id, SUM(score.score) AS score,
+      score.judge_id as judge FROM contestant
+      JOIN score ON
+      contestant.id = score.contestant_id
+      WHERE contestant.event_id = :event_id
+      GROUP BY contestant.id, score.event_id
+      ORDER BY score DESC LIMIT 10
+    ');
+    $stmt->bindParam(':event_id', $event_id);
+    $stmt->execute();
+    $count = $stmt->rowCount();
+    if ($count > 0) {
+        $contestants = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        ?>
+        <h3 class="text-center"><?= $event['event_name'] ?></h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Score</th>
+                    <th>Rank</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php 
+      $rank = 1;
+      foreach ($contestants as $contestant) : 
+                  ?>
+                    <tr>
+    
+                        <td><?= $contestant['contestant_name'] ?></td>
+
+                        <td><?php
+
+                         
+                           foreach ($judges as $judge) 
+                           {
+                            if ($contestant['event_id'] == $judge['event_id']) {
+                              # code...
+                           echo $contestant['score']/$judge['count'];
+
+                            }
+                          }
+                         ?></td>
+                    </tr>
+
+                <?php $rank++; endforeach; ?>
+            </tbody>
+        </table>
+    <?php
+    } else {
+        echo "No data";
+    }
+  }
+}
+?>
+</div>
+
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

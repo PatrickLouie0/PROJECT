@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>event</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
+    <link rel="stylesheet" href="assets/css/Header-Blue.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <style type="text/css">
+        .table
+        {
+            color: white;
+        }
+    </style>
+</head>
+
+<body style="background: url(&quot;assets/img/w8.jpg&quot;) center / cover no-repeat;">
+    <div class="container ms-0 my-2 py-1"><button class="btn btn-primary" type="button" data-bs-target="#modal-1" data-bs-toggle="modal"><strong>Event</strong></button></div>
+    <div class="table-responsive mx-2" style="/*color: #ffffff;*/">
+        <table class="table table-hover ">
+            <thead class="text-center ">
+                <tr>
+                    <th>Event Name</th>
+                    <th>Event Description</th>
+                    <th>Time</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Cell 1</td>
+                    <td>Cell 2</td>
+                    <td>Text</td>
+                    <td>Text</td>
+                </tr>
+                <tr>
+                    <td>Text</td>
+                    <td>Cell 3</td>
+                    <td>Cell 4</td>
+                    <td>Text</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="modal fade" role="dialog" tabindex="-1" id="modal-1">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" style="color: var(--bs-blue);"><strong>ADD EVENT</strong></h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST">
+                        <div class="mb-3"><label class="form-label">Event Name</label><input class="form-control" type="text" name="event_name"></div>
+                        <div class="mb-3"><label class="form-label">Event Description</label><textarea class="form-control" name="event_description"></textarea></div>
+                        <div class="mb-3"><label class="form-label"  >Event Date</label><input class="form-control form-control" type="date" name="event_date_start"></div>
+                        <div class="mb-3"><label class="form-label"  >Event Time</label><input class="form-control form-control" type="time" name="event_time_start"></div>
+                        <div class="mb-3"><label class="form-label"  >Event Date End</label><input class="form-control form-control" type="date" name="event_date_send"></div>
+                        <div class="mb-3"><label class="form-label"  >Event Time End</label><input class="form-control form-control" type="time" name="event_time_end"></div>
+                    </form>
+                </div>
+                <div class="modal-footer"><button class="btn btn-light" type="button" data-bs-dismiss="modal">Close</button><button class="btn btn-primary" type="button" name="submit">Save</button></div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<table id="myTable">
+  <tr>
+    <td>John</td>
+    <td>Doe</td>
+    <td>john@example.com</td>
+    <td><button class="edit-button">Edit</button></td>
+  </tr>
+  <tr>
+    <td>Jane</td>
+    <td>Doe</td>
+    <td>jane@example.com</td>
+    <td><button class="edit-button">Edit</button></td>
+  </tr>
+</table>
+
+<form id="myForm">
+  <label for="firstName">First Name:</label>
+  <input type="text" id="firstName" name="firstName">
+  <br>
+  <label for="lastName">Last Name:</label>
+  <input type="text" id="lastName" name="lastName">
+  <br>
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email">
+  <br>
+  <button type="submit">Submit</button>
+</form>
+
+<script type="text/javascript">
+	// Get the table and form elements
+const table = document.getElementById('myTable');
+const form = document.getElementById('myForm');
+
+// Add event listener to the table
+table.addEventListener('click', function(event) {
+  // Check if the clicked element is a button
+  if (event.target.className === 'edit-button') {
+    // Get the row of the clicked button
+    const row = event.target.parentNode.parentNode;
+    
+    // Extract the data from the row
+    const firstName = row.querySelector('td:nth-child(1)').textContent;
+    const lastName = row.querySelector('td:nth-child(2)').textContent;
+    const email = row.querySelector('td:nth-child(3)').textContent;
+    
+    // Pre-fill the form fields with the extracted data
+    form.firstName.value = firstName;
+    form.lastName.value = lastName;
+    form.email.value = email;
+  }
+});
+</script>
+
+</body>
+</html>

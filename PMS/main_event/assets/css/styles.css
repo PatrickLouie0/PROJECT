@@ -1,0 +1,12 @@
+.table {
+color: white;
+}
+.table-hover tbody tr td:hover
+{
+	color: blue;
+}
+a
+{
+	color: white;
+}
+
