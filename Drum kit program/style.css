@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=New+Amsterdam&display=swap');
+*{
+    margin: 0px;
+    padding: 0px;
+}
+.container
+{
+    margin: 0px 10px 0px 10px;
+   
+}
+.keys
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+.key
+{
+    
+  font-family: "New Amsterdam", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 30px;
+  font-weight: bolder;
+  background-color: black;
+  color: white;
+  padding: 10px 40px 20px 40px;
+  transition: all 2s;
+}
+.playing
+{
+    transform: scale(1.1);
+    border-style:solid;
+    border-color: blue;
+    
+}
